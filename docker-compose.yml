@@ -1,12 +1,23 @@
 version: '3.7'
 
 services: 
-  api:
+  todo-api:
     build: ./services/todo-api
-    command: python app.py run -h 0.0.0.0
+    command: python manage.py run -h 0.0.0.0
     volumes:
       - ./services/todo-api/:/usr/src/todo-api/
     ports:
       - 5000:5000
     env_file: 
       - ./services/todo-api/.env.dev
+  database:
+    image: postgres:12-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment: 
+      - POSTGRES_USER=todo_admin
+      - POSTGRES_PASSWORD=temporary_password
+      - POSTGRES_DB=todo_db_dev
+  
+volumes:
+  postgres_data:

@@ -22,9 +22,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment: 
-      - POSTGRES_USER=todo_admin
-      - POSTGRES_PASSWORD=temporary_password
-      - POSTGRES_DB=todo_db_dev
+      - POSTGRES_USER=${TODO_DATABASE_USER}
+      - POSTGRES_PASSWORD=${TODO_DATABASE_PASSWORD}
+      - POSTGRES_DB=${TODO_DATABASE_NAME}
   
 volumes:
   postgres_data:

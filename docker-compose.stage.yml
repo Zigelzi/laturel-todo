@@ -13,10 +13,11 @@ services:
     depends_on: 
       - database
   todo-spa:
-    build: ./services/todo-spa
+    build: 
+      context: ./services/todo-spa
+      dockerfile: Dockerfile.stage
     volumes:
-      - './services/todo-spa:/usr/src/todo-spa'
-      - '/usr/src/todo-spa/node_modules'
+      - static_volume:/usr/src/todo-spa/
     expose: 
       - 8080
   database:
@@ -30,12 +31,15 @@ services:
   nginx: 
     build: 
       context: ./services/nginx
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.stage
+    volumes:
+      - static_volume:/usr/src/todo-spa/
     ports:
-      - 1337:80
+      - 80:80
     depends_on: 
       - todo-api
       - todo-spa
   
 volumes:
   postgres_data:
+  static_volume:

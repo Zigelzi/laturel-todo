@@ -2,7 +2,9 @@ version: '3.7'
 
 services: 
   todo-api:
-    build: ./services/todo-api
+    build: 
+      context: ./services/todo-api
+      dockerfile: Dockerfile.stage
     command: python manage.py run -h 0.0.0.0
     volumes:
       - ./services/todo-api/:/usr/src/todo-api/

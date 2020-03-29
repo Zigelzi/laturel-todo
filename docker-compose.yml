@@ -27,6 +27,8 @@ services:
       - POSTGRES_USER=${TODO_DATABASE_USER}
       - POSTGRES_PASSWORD=${TODO_DATABASE_PASSWORD}
       - POSTGRES_DB=${TODO_DATABASE_NAME}
+    ports:
+      - 5432:5432
   nginx: 
     build: 
       context: ./services/nginx

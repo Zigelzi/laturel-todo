@@ -5,13 +5,13 @@ services:
     build: 
       context: ./services/todo-api
       dockerfile: Dockerfile.stage
-    command: python manage.py run -h 0.0.0.0
+    command: gunicorn --bind 0.0.0.0:5000 manage:app
     volumes:
       - ./services/todo-api/:/usr/src/todo-api/
     ports: 
       - 5000:5000
     env_file: 
-      - ./services/todo-api/.env.dev
+      - ./services/todo-api/.env.stage
     depends_on: 
       - database
   todo-spa:
@@ -27,9 +27,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment: 
-      - POSTGRES_USER=${TODO_DATABASE_USER}
-      - POSTGRES_PASSWORD=${TODO_DATABASE_PASSWORD}
-      - POSTGRES_DB=${TODO_DATABASE_NAME}
+      - POSTGRES_USER=${TODO_DATABASE_USER_STAGE}
+      - POSTGRES_PASSWORD=${TODO_DATABASE_PASSWORD_STAGE}
+      - POSTGRES_DB=${TODO_DATABASE_NAME_STAGE}
   nginx: 
     build: 
       context: ./services/nginx

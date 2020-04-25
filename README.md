@@ -8,10 +8,10 @@ ToDo app for creating and sharing projects with customers
     * SPA: https://github.com/Zigelzi/laturel-todo-spa
 3. Set environment variables
     * SECRET_KEY
-    * TODO_POSTGRES_USER
-    * TODO_POSTGRES_PASSWORD
-    * TODO_DATABASE_NAME
-    * TODO_DATABASE_URL
+    * TODO_POSTGRES_USER_*ENVIRONMENT*
+    * TODO_POSTGRES_PASSWORD_*ENVIRONMENT*
+    * TODO_DATABASE_NAME_*ENVIRONMENT*
+    * TODO_DATABASE_URL_*ENVIRONMENT*
 4. A: To build development environment execute docker-compose up -d --build in the root directory
     * Create the database with docker-compose exec todo-api python manage.py create_db
 4. B: To build staging environment execte docker-compose -f docker-compose.stage.yml up -d --build

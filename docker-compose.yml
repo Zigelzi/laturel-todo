@@ -24,7 +24,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment: 
-      - POSTGRES_USER=${TODO_DATABASE_URL_DEV}
+      - POSTGRES_USER=${TODO_DATABASE_USER_DEV}
       - POSTGRES_PASSWORD=${TODO_DATABASE_PASSWORD_DEV}
       - POSTGRES_DB=${TODO_DATABASE_NAME_DEV}
     ports:
